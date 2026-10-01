@@ -7,13 +7,13 @@ from aiogram.types import InlineKeyboardMarkup
 from data import CATEGORIES
 from keyboards.inline import SOURCE_FAVORITES, SOURCE_NEW, tool_card
 from services.catalog import Tool, get_by_category, get_new_tools
-from services.favorites import get_favorites, is_favorite
+from services.favorites import FavoritesStorage
 
 
-def get_source_tools(source: str, user_id: int) -> list[Tool]:
+def get_source_tools(source: str, user_id: int, favorites: FavoritesStorage) -> list[Tool]:
     """Возвращает список инструментов для источника (категория / избранное / новинки)."""
     if source == SOURCE_FAVORITES:
-        return get_favorites(user_id)
+        return favorites.list(user_id)
     if source == SOURCE_NEW:
         return get_new_tools()
     return get_by_category(source)
@@ -34,7 +34,7 @@ def format_tool(tool: Tool, position: int, total: int) -> str:
 
 
 def build_card(
-    source: str, index: int, user_id: int, menu: str = "ai"
+    source: str, index: int, user_id: int, favorites: FavoritesStorage, menu: str = "ai"
 ) -> tuple[str, InlineKeyboardMarkup] | None:
     """Собирает карточку для позиции index в источнике.
 
@@ -42,7 +42,7 @@ def build_card(
     после последнего инструмента возвращает к первому.
     Возвращает None, если список пуст.
     """
-    tools = get_source_tools(source, user_id)
+    tools = get_source_tools(source, user_id, favorites)
     if not tools:
         return None
     index %= len(tools)
@@ -52,7 +52,7 @@ def build_card(
         url=tool.url,
         source=source,
         index=index,
-        in_favorites=is_favorite(user_id, tool.id),
+        in_favorites=favorites.is_favorite(user_id, tool.id),
         menu=menu,
         has_next=len(tools) > 1,
     )

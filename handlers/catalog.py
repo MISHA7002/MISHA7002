@@ -11,6 +11,7 @@ from data import AI_CATEGORIES, CATEGORIES, CONTENT_CATEGORIES
 from keyboards.inline import SOURCE_NEW, CategoryCallback, MenuCallback, ToolCallback, categories_menu
 from keyboards.reply import BTN_CONTENT, BTN_FIND_AI, BTN_NEW, BTN_SERVICE, BTN_TELEGRAM
 from services.cards import build_card
+from services.favorites import FavoritesStorage
 
 router = Router(name="catalog")
 
@@ -24,9 +25,9 @@ MENUS = {
 }
 
 
-async def send_card(message: Message, source: str, user_id: int, empty_text: str) -> None:
+async def send_card(message: Message, source: str, favorites: FavoritesStorage, empty_text: str) -> None:
     """Отправляет новое сообщение с первой карточкой источника."""
-    card = build_card(source, 0, user_id)
+    card = build_card(source, 0, message.from_user.id, favorites)
     if card is None:
         await message.answer(empty_text)
         return
@@ -34,9 +35,16 @@ async def send_card(message: Message, source: str, user_id: int, empty_text: str
     await message.answer(text, reply_markup=markup, disable_web_page_preview=True)
 
 
-async def edit_card(callback: CallbackQuery, source: str, index: int, menu: str, empty_text: str) -> None:
+async def edit_card(
+    callback: CallbackQuery,
+    source: str,
+    index: int,
+    menu: str,
+    favorites: FavoritesStorage,
+    empty_text: str,
+) -> None:
     """Перерисовывает текущее сообщение с карточкой."""
-    card = build_card(source, index, callback.from_user.id, menu)
+    card = build_card(source, index, callback.from_user.id, favorites, menu)
     # suppress: Telegram ругается, если текст и клавиатура не изменились
     with suppress(TelegramBadRequest):
         if card is None:
@@ -61,20 +69,20 @@ async def show_content_menu(message: Message) -> None:
 
 
 @router.message(F.text == BTN_SERVICE)
-async def show_services(message: Message) -> None:
-    await send_card(message, "service", message.from_user.id, "Сервисов пока нет.")
+async def show_services(message: Message, favorites: FavoritesStorage) -> None:
+    await send_card(message, "service", favorites, "Сервисов пока нет.")
 
 
 @router.message(F.text == BTN_TELEGRAM)
-async def show_telegram(message: Message) -> None:
-    await send_card(message, "telegram", message.from_user.id, "Telegram-инструментов пока нет.")
+async def show_telegram(message: Message, favorites: FavoritesStorage) -> None:
+    await send_card(message, "telegram", favorites, "Telegram-инструментов пока нет.")
 
 
 @router.message(Command("new"))
 @router.message(F.text == BTN_NEW)
-async def show_new(message: Message) -> None:
+async def show_new(message: Message, favorites: FavoritesStorage) -> None:
     await message.answer("🔥 <b>Новинки каталога</b>")
-    await send_card(message, SOURCE_NEW, message.from_user.id, "Новинок пока нет.")
+    await send_card(message, SOURCE_NEW, favorites, "Новинок пока нет.")
 
 
 # ---------- Inline-навигация ----------
@@ -94,15 +102,17 @@ async def on_menu(callback: CallbackQuery, callback_data: MenuCallback) -> None:
 
 
 @router.callback_query(CategoryCallback.filter())
-async def on_category(callback: CallbackQuery, callback_data: CategoryCallback) -> None:
+async def on_category(callback: CallbackQuery, callback_data: CategoryCallback, favorites: FavoritesStorage) -> None:
     """Выбор категории — показываем первую карточку."""
     title = CATEGORIES.get(callback_data.category, callback_data.category)
-    await edit_card(callback, callback_data.category, 0, callback_data.menu, f"В категории {title} пока пусто.")
+    await edit_card(
+        callback, callback_data.category, 0, callback_data.menu, favorites, f"В категории {title} пока пусто."
+    )
     await callback.answer()
 
 
 @router.callback_query(ToolCallback.filter(F.action.in_({"show", "next"})))
-async def on_next(callback: CallbackQuery, callback_data: ToolCallback) -> None:
+async def on_next(callback: CallbackQuery, callback_data: ToolCallback, favorites: FavoritesStorage) -> None:
     """Кнопка «➡️ Следующий»."""
-    await edit_card(callback, callback_data.source, callback_data.index, callback_data.menu, "Список пуст.")
+    await edit_card(callback, callback_data.source, callback_data.index, callback_data.menu, favorites, "Список пуст.")
     await callback.answer()

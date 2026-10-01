@@ -9,18 +9,19 @@ from dataclasses import dataclass
 
 from dotenv import load_dotenv
 
-# Подгружаем переменные из .env, если файл существует.
-# Уже заданные переменные окружения не перезаписываются.
-load_dotenv()
-
-
 @dataclass(frozen=True)
 class Config:
     bot_token: str
 
 
 def load_config() -> Config:
-    """Читает настройки и падает с понятной ошибкой, если токена нет."""
+    """Читает настройки и падает с понятной ошибкой, если токена нет.
+
+    .env подгружается только здесь, при запуске бота, а не при импорте модуля.
+    Уже заданные переменные окружения не перезаписываются. Значение токена
+    нигде не логируется.
+    """
+    load_dotenv()
     token = os.getenv("BOT_TOKEN", "").strip()
     if not token or token == "your_telegram_bot_token_here":
         raise RuntimeError(
