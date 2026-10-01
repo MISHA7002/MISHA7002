@@ -1,0 +1,232 @@
+[
+  {
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "description": "Универсальный AI-ассистент: тексты, идеи, переводы, ответы на вопросы.",
+    "category": "text",
+    "price": "Бесплатно / от $20 в месяц",
+    "url": "https://chatgpt.com",
+    "tags": ["текст", "чат", "ассистент"],
+    "is_new": false
+  },
+  {
+    "id": "claude",
+    "name": "Claude",
+    "description": "AI-ассистент от Anthropic: длинные документы, анализ, написание текстов и кода.",
+    "category": "text",
+    "price": "Бесплатно / от $20 в месяц",
+    "url": "https://claude.ai",
+    "tags": ["текст", "анализ", "ассистент"],
+    "is_new": true
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "description": "AI-поисковик, который отвечает на вопросы со ссылками на источники.",
+    "category": "text",
+    "price": "Бесплатно / Pro $20 в месяц",
+    "url": "https://www.perplexity.ai",
+    "tags": ["поиск", "исследования", "источники"],
+    "is_new": false
+  },
+  {
+    "id": "midjourney",
+    "name": "Midjourney",
+    "description": "Генерация художественных изображений по текстовому описанию.",
+    "category": "image",
+    "price": "от $10 в месяц",
+    "url": "https://www.midjourney.com",
+    "tags": ["изображения", "арт", "генерация"],
+    "is_new": false
+  },
+  {
+    "id": "leonardo",
+    "name": "Leonardo AI",
+    "description": "Генерация и редактирование изображений, есть бесплатные ежедневные кредиты.",
+    "category": "image",
+    "price": "Бесплатно / от $10 в месяц",
+    "url": "https://leonardo.ai",
+    "tags": ["изображения", "дизайн", "генерация"],
+    "is_new": false
+  },
+  {
+    "id": "ideogram",
+    "name": "Ideogram",
+    "description": "Генератор картинок, который хорошо рисует текст на изображениях: постеры, логотипы.",
+    "category": "image",
+    "price": "Бесплатно / от $8 в месяц",
+    "url": "https://ideogram.ai",
+    "tags": ["изображения", "логотипы", "постеры"],
+    "is_new": true
+  },
+  {
+    "id": "runway",
+    "name": "Runway",
+    "description": "Генерация и монтаж видео с помощью AI: text-to-video, удаление фона, эффекты.",
+    "category": "video",
+    "price": "Бесплатно / от $12 в месяц",
+    "url": "https://runwayml.com",
+    "tags": ["видео", "монтаж", "генерация"],
+    "is_new": false
+  },
+  {
+    "id": "pika",
+    "name": "Pika",
+    "description": "Создание коротких видеороликов из текста или картинки.",
+    "category": "video",
+    "price": "Бесплатно / от $8 в месяц",
+    "url": "https://pika.art",
+    "tags": ["видео", "анимация", "генерация"],
+    "is_new": true
+  },
+  {
+    "id": "capcut",
+    "name": "CapCut",
+    "description": "Видеоредактор с AI-функциями: автосубтитры, удаление фона, шаблоны.",
+    "category": "video",
+    "price": "Бесплатно / Pro по подписке",
+    "url": "https://www.capcut.com",
+    "tags": ["видео", "монтаж", "субтитры"],
+    "is_new": false
+  },
+  {
+    "id": "elevenlabs",
+    "name": "ElevenLabs",
+    "description": "Реалистичная озвучка текста и клонирование голоса на десятках языков.",
+    "category": "voice",
+    "price": "Бесплатно / от $5 в месяц",
+    "url": "https://elevenlabs.io",
+    "tags": ["голос", "озвучка", "tts"],
+    "is_new": false
+  },
+  {
+    "id": "suno",
+    "name": "Suno",
+    "description": "Генерация песен с вокалом и музыкой по текстовому описанию.",
+    "category": "voice",
+    "price": "Бесплатно / от $10 в месяц",
+    "url": "https://suno.com",
+    "tags": ["музыка", "песни", "аудио"],
+    "is_new": true
+  },
+  {
+    "id": "whisper",
+    "name": "Whisper",
+    "description": "Открытая модель распознавания речи: расшифровка аудио и видео в текст.",
+    "category": "voice",
+    "price": "Бесплатно (open source)",
+    "url": "https://github.com/openai/whisper",
+    "tags": ["распознавание речи", "транскрипция", "open source"],
+    "is_new": false
+  },
+  {
+    "id": "vidiq",
+    "name": "vidIQ",
+    "description": "Аналитика YouTube-канала, подбор ключевых слов и идей для роликов.",
+    "category": "youtube",
+    "price": "Бесплатно / от $7.5 в месяц",
+    "url": "https://vidiq.com",
+    "tags": ["youtube", "seo", "аналитика"],
+    "is_new": false
+  },
+  {
+    "id": "opusclip",
+    "name": "Opus Clip",
+    "description": "Автоматически нарезает длинные видео на короткие клипы для Shorts и Reels.",
+    "category": "youtube",
+    "price": "Бесплатно / от $15 в месяц",
+    "url": "https://www.opus.pro",
+    "tags": ["youtube", "shorts", "нарезка"],
+    "is_new": true
+  },
+  {
+    "id": "github-copilot",
+    "name": "GitHub Copilot",
+    "description": "AI-помощник программиста прямо в редакторе кода.",
+    "category": "code",
+    "price": "Бесплатный план / от $10 в месяц",
+    "url": "https://github.com/features/copilot",
+    "tags": ["код", "ide", "автодополнение"],
+    "is_new": false
+  },
+  {
+    "id": "cursor",
+    "name": "Cursor",
+    "description": "Редактор кода со встроенным AI: генерация, рефакторинг, чат по проекту.",
+    "category": "code",
+    "price": "Бесплатно / от $20 в месяц",
+    "url": "https://cursor.com",
+    "tags": ["код", "редактор", "ai"],
+    "is_new": false
+  },
+  {
+    "id": "claude-code",
+    "name": "Claude Code",
+    "description": "AI-агент для программирования в терминале, IDE и браузере.",
+    "category": "code",
+    "price": "В подписке Claude Pro / Max",
+    "url": "https://claude.com/claude-code",
+    "tags": ["код", "агент", "терминал"],
+    "is_new": true
+  },
+  {
+    "id": "canva",
+    "name": "Canva",
+    "description": "Онлайн-дизайн: соцсети, презентации, баннеры, есть AI-функции Magic Studio.",
+    "category": "service",
+    "price": "Бесплатно / Pro по подписке",
+    "url": "https://www.canva.com",
+    "tags": ["дизайн", "презентации", "соцсети"],
+    "is_new": false
+  },
+  {
+    "id": "notion",
+    "name": "Notion",
+    "description": "Заметки, базы знаний и задачи в одном месте, со встроенным Notion AI.",
+    "category": "service",
+    "price": "Бесплатно / от $10 в месяц",
+    "url": "https://www.notion.so",
+    "tags": ["заметки", "задачи", "продуктивность"],
+    "is_new": false
+  },
+  {
+    "id": "gamma",
+    "name": "Gamma",
+    "description": "Создаёт презентации, документы и сайты по текстовому запросу.",
+    "category": "service",
+    "price": "Бесплатно / от $8 в месяц",
+    "url": "https://gamma.app",
+    "tags": ["презентации", "сайты", "генерация"],
+    "is_new": true
+  },
+  {
+    "id": "botfather",
+    "name": "BotFather",
+    "description": "Официальный бот Telegram для создания и настройки своих ботов.",
+    "category": "telegram",
+    "price": "Бесплатно",
+    "url": "https://t.me/BotFather",
+    "tags": ["telegram", "боты", "разработка"],
+    "is_new": false
+  },
+  {
+    "id": "tgstat",
+    "name": "TGStat",
+    "description": "Статистика и аналитика Telegram-каналов, поиск каналов по тематикам.",
+    "category": "telegram",
+    "price": "Бесплатно / платные тарифы",
+    "url": "https://tgstat.ru",
+    "tags": ["telegram", "аналитика", "каналы"],
+    "is_new": false
+  },
+  {
+    "id": "telegraph",
+    "name": "Telegraph",
+    "description": "Простая публикация лонгридов с красивым просмотром прямо в Telegram.",
+    "category": "telegram",
+    "price": "Бесплатно",
+    "url": "https://telegra.ph",
+    "tags": ["telegram", "статьи", "публикации"],
+    "is_new": false
+  }
+]
